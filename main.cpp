@@ -1,25 +1,28 @@
 //Class Includes
 #include "Application.hpp"
+#include "external.hpp"
 
 //Lib-Includes
-#include <iostream>
 #include <memory>
 #include <vector>
 #include <chrono>
 #include <algorithm>
 
 
+ext::OS os = ext::getOS();
+
 int main(int argc, char* argv[])
 {
     //Unique Application
     auto app = std::make_unique<Application>();
-
     const std::string filePath = argv[0];
 
-    app->usage();
+    //Testzone
+    app->menu(filePath);
 
     //Argument Parsing
     std::vector<std::string> argv_s ;
+
     for(unsigned int i =  0; i < argc - 1; i++)
     {
         std::string tmp(argv[i]);
@@ -40,7 +43,7 @@ int main(int argc, char* argv[])
     }
     else if(argv_s.at(0) == "-m" || argv_s.at(0) == "--menu")
     {
-        app->menu();
+        app->menu(filePath);
     }
     else if(argv_s.at(0) == "-t" || argv_s.at(0) == "--type")
     {
@@ -56,20 +59,21 @@ int main(int argc, char* argv[])
                 {
                     case 1:
                         app->genFile(1, filePath);
-                        break;
+                        return EXIT_SUCCESS;
 
 
                     case 2:
                         app->genFile(2, filePath);
-                        break;
+                        return EXIT_SUCCESS;
 
                     case 3:
                         app->genFile(3, filePath);
-                        break;
+                        return EXIT_SUCCESS;
 
                     default:
                         std::cerr << "Param \"" << tmp << "\" not defined" << std::endl;
-                        break;
+                        return EXIT_SUCCESS;
+
                 }
             }
             else
@@ -86,8 +90,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-
+        std::cerr << "Command Not Found. Retry!" << std::endl;
+        return EXIT_FAILURE;
     }
-
-    return EXIT_SUCCESS;
 }
