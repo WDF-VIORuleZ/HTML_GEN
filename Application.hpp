@@ -11,6 +11,7 @@ class Application
 {
 private:
     std::string _HTML_src;
+    std::string genFileName(unsigned int type);
 
 public:
     //CS
@@ -29,9 +30,8 @@ public:
 
     //Methods
     void genFile(unsigned int num, std::string nPath); // <-- Bool für Main!
-
     void usage();
-    void menu();
+    void menu(std::string path);
 };
 
 

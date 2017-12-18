@@ -17,14 +17,13 @@ Application::Application()
 
 Application::Application(std::string nHTML)
 {
-    if (nHTML != "")this->_HTML_src = nHTML;
+    if (!nHTML.empty())this->_HTML_src = nHTML;
 }
 
 Application::~Application()
 {
 
 }
-
 
 //GETTER
 const std::string Application::getHTML()const
@@ -35,35 +34,26 @@ const std::string Application::getHTML()const
 //SETTER
 void Application::setHTML(std::string nHTML)
 {
-    if (nHTML != "")this->_HTML_src = nHTML;
+    if (!nHTML.empty())this->_HTML_src = nHTML;
 }
 
 //METHODS
 void Application::genFile(unsigned int num, std::string nPath)
 {
-    //Standard Codes
-    std::vector<std::string> src = { "<!DOCTYPE HTML>\n<html>\n<head>\n<title>Hier Kommt dein titel hin!</title>\n</head>\n<body>\n\nHier ensteht der Hauptteil deiner Website!\n\n</body>\n</html>",
+    std::vector<std::string> src  = {"<!DOCTYPE HTML>\n<html>\n<head>\n<title>Hier Kommt dein titel hin!</title>\n</head>\n<body>\n\nHier ensteht der Hauptteil deiner Website!\n\n</body>\n</html>",
                                      "<!DOCTYPE HTML>\n<html>\n<head>\n<title>Website</title>\n</head>\n<body>\n\n\n\n</body>\n</html>",
                                      "<!DOCTYPE HTML>\n<html>\n<body>\n\n\n\n</body>\n</html>"
                                     };
 
-    //Clock for unique Filename
-    std::time_t res = std::time(nullptr);
-    std::string str = std::asctime(std::localtime(&res));
-
-    //Remove Whitespaces
-    str.erase (std::remove (str.begin(), str.end(), ' '), str.end());
-
-    const std::string fileName = std::string("Beispiel" + '[' + num + '|') + str + "].html";
+    std::string fileName = genFileName(num);
 
     std::ofstream output(nPath + fileName);
-
     if(output.is_open())
     {
         if(!output.fail())
         {
-            output << src.at(num);
-            std::cout << "Successfully created file" << std::endl;
+            output << src.at(num - 1);
+            std::cout << "Successfully created file " << fileName << std::endl;
         }
         else
         {
@@ -77,6 +67,24 @@ void Application::genFile(unsigned int num, std::string nPath)
     output.close();
 }
 
+std::string Application::genFileName(unsigned int type)
+{
+    std::time_t res = std::time(nullptr);
+    std::string str = std::asctime(std::localtime(&res));
+
+    //Remove Whitespaces
+    str.erase(std::remove (str.begin(), str.end(), ' '), str.end());
+
+    std::string filePath = "Beispiel[";
+    filePath.append(std::to_string(type));
+    filePath.append("]");
+    filePath.append(str);
+    filePath.append(".html");
+    std::cout << "AktPath" << filePath << std::endl;
+
+    return filePath;
+}
+
 void Application::usage()
 {
     std::cout << "HTML-Generator [Options]" << std::endl << "Options: " << std::endl <<
@@ -87,7 +95,7 @@ void Application::usage()
          "\t[3]: Minimalgeruest    | keine Vorschlaege 	 | schwerer Einstieg " << std::endl;
 }
 
-void Application::menu()
+void Application::menu(std::string nPath)
 {
     std::cout << std::string(" _     _____  _      _           _____ _____")                    << std::endl;
     std::cout << std::string("/ \\ /|/__ __\\/ \\__/|/ \\         /  __//  __// \\  /|")        << std::endl;
@@ -95,10 +103,24 @@ void Application::menu()
     std::cout << std::string("| | ||  | |  | |  ||| |_/\\\\____\\| |_//|  /_ | | \\||")         << std::endl;
     std::cout << std::string("\\_/ \\|  \\_/  \\_/  \\|\\____/      \\____\\\\____\\\\_/  \\|") << std::endl;
 
-    int key;
-    do
-    {
+    std::string barrier = "####################################################" ;
 
+    int _key;
+
+    //TODO OS DETECTION
+    system("clear");
+    std::cout << '\n' << barrier << std::endl;
+    std::cout << "             |### HTML-GEN v.1 Menu ##|" << std::endl;
+    std::cout << barrier << std::endl;
+    std::cout << "Enter The Number Of Your Preferred File-Type :> ";
+    std:: cin >> _key;
+    //Process Input
+    if(!std::cin.fail() && (_key > 0 && _key < 4))
+    {
+        genFile(_key, nPath);
     }
-    while(key != 1);
+    else
+    {
+        std::cerr << "Error Getting Input. Retry" << std::endl;
+    }
 }

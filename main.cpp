@@ -8,7 +8,6 @@
 #include <chrono>
 #include <algorithm>
 
-
 ext::OS os = ext::getOS();
 
 int main(int argc, char* argv[])
@@ -31,6 +30,7 @@ int main(int argc, char* argv[])
     }
 
     //Printing Vector
+    std::cout << "Starting Output" << std::endl;
     for(unsigned int i = 0; i < argv_s.size(); i++)
     {
         std::cout << &argv_s.at(i) << std::endl;
@@ -61,7 +61,6 @@ int main(int argc, char* argv[])
                         app->genFile(1, filePath);
                         return EXIT_SUCCESS;
 
-
                     case 2:
                         app->genFile(2, filePath);
                         return EXIT_SUCCESS;
@@ -73,7 +72,6 @@ int main(int argc, char* argv[])
                     default:
                         std::cerr << "Param \"" << tmp << "\" not defined" << std::endl;
                         return EXIT_SUCCESS;
-
                 }
             }
             else
