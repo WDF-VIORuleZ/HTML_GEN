@@ -46,8 +46,11 @@ void Application::setHTML(std::string nHTML)
 //METHODS
 void Application::genFile(unsigned int num, std::string nPath)
 {
-    std::vector<std::string> src  = {std::string("<!DOCTYPE HTML>\n<html>\n<head>\n<title>Hier Kommt dein titel hin!</title>\n</head>\n<body>\n\nHier ensteht der Hauptteil deiner Website!\n\n</body>\n</html>"),
-                                     std::string("<!DOCTYPE HTML>\n<html>\n<head>\n<title>Website</title>\n</head>\n<body>\n\n\n\n</body>\n</html>"),
+    std::vector<std::string> src  = {std::string("<!DOCTYPE HTML>\n<html>\n<head>\n<title>Hier Kommt dein titel hin!"
+                                                 "</title>\n</head>\n<body>\n\nHier ensteht der Hauptteil deiner "
+                                                 "Website!""\n\n</body>\n</html>"),
+                                     std::string("<!DOCTYPE HTML>\n<html>\n<head>\n<title>Website</title>\n</head>\n"
+                                                 "<body>\n\n\n\n</body>\n</html>"),
                                      std::string("<!DOCTYPE HTML>\n<html>\n<body>\n\n\n\n</body>\n</html>")
                                     };
 
