@@ -1,13 +1,13 @@
 //Class Includes
 #include "Application.hpp"
 //#include "external.hpp"
-#include <iostream>
 
 //Lib-Includes
 #include <memory>
 #include <vector>
 #include <chrono>
 #include <algorithm>
+#include <iostream>
 
 int main(int argc, char* argv[])
 {
