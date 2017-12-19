@@ -47,10 +47,8 @@ int main(int argc, char* argv[])
             //Checks for Integer(LENGTH)
             if(argv_s.at(2).length() == 1)
             {
-                //String ->
-                int tmp = std::atoi(argv_s.at(1).c_str());
-                std::cout << tmp << std::endl;
-
+                //String
+                int tmp = std::atoi(argv_s.at(2).c_str());
                 switch(tmp)
                 {
                     case 1:
@@ -80,6 +78,13 @@ int main(int argc, char* argv[])
         {
             std::cerr << "There are too few Arguments. Retry!" << std::endl;
             return EXIT_FAILURE;
+        }
+    }
+    else if(argc > 3)
+    {
+        if(argv_s.at(3) == "-c" || argv_s.at(3) == "--css")
+        {
+            std::cout << "Processing CSS coming soon" << std::endl;
         }
     }
     else
