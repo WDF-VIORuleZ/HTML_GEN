@@ -52,14 +52,15 @@ void Application::genFile(unsigned int num, std::string nPath)
                                     };
 
     std::string fileName = genFileName(num);
-    std::cout << &src.at(num) << std::endl;
+    std::cout << src.at(num - 1).c_str() << std::endl;
 
-    std::ofstream output(nPath + fileName);
+    std::ofstream output;
+    output.open((nPath + fileName));
     if(output.is_open())
     {
         if(!output.fail())
         {
-            output << &src.at(num);
+            output << src.at(num - 1);
             std::cout << "Successfully created file " << fileName << std::endl;
         }
         else
