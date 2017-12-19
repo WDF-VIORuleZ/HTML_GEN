@@ -15,36 +15,30 @@ int main(int argc, char* argv[])
     auto app = std::make_unique<Application>();
     const std::string filePath = argv[0];
 
-    //Testzone
-    std::cout << argc << std::endl;
 
     //Argument Parsing
-    std::vector<std::string> argv_s ;
-    if(argc == 1)
+    std::vector<std::string> argv_s;
+    for(int i = 0; i < argc; i++)
     {
-        std::cout << "MARK" << std::endl;
-        argv_s.push_back(std::string(argv[0]));
-        std::cout << argv_s.at(1) << std::endl;
-    }
-    else
-    {
-        //std::cout << "In else" << std::endl;
-        for(int i = 0; i < argc; i++)
-        {
-            std::string tmp(argv[i]);
-            argv_s.push_back(tmp);
-            std::cout << i << argv_s.at(i) << std::endl;
-        }
+        std::string tmp(argv[i]);
+        argv_s.push_back(tmp);
+        std::cout << i << argv_s.at(i) << std::endl;
     }
 
     //Argument Processing
-    if(argv_s.at(1) == "-h" || argv_s.at(1) == "--help" || argc == 1)
+    if(argv_s.size() > 0 && argc == 1) {
+        app->usage();
+        return EXIT_SUCCESS;
+    }
+    else if((argv_s.at(1) == "-h" || argv_s.at(1) == "--help" ))
     {
         app->usage();
+        return EXIT_SUCCESS;
     }
     else if(argv_s.at(1) == "-m" || argv_s.at(1) == "--menu")
     {
         app->menu(filePath);
+        return EXIT_SUCCESS;
     }
     else if(argv_s.at(1) == "-t" || argv_s.at(1) == "--type")
     {
@@ -94,3 +88,4 @@ int main(int argc, char* argv[])
         return EXIT_FAILURE;
     }
 }
+

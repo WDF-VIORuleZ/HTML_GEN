@@ -81,15 +81,11 @@ std::string Application::genFileName(unsigned int type)
 
     //Remove Whitespaces
     str.erase(std::remove (str.begin(), str.end(), ' '), str.end());
+    //Remove Backspace
+    str.erase(std::remove(str.begin(), str.end(), '\n'), str.end());
 
     std::string filePath = "Beispiel[";
-    filePath.append(std::to_string(type));
-    filePath.append("]");
-    filePath.append(str);
-    filePath.append(".html");
-
-    //Debug
-    std::cout << "AktPath" << filePath << std::endl;
+    filePath.append(std::to_string(type) + "]" + std::string(str) + ".html");
 
     return filePath;
 }
