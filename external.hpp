@@ -54,22 +54,24 @@ namespace ext
 
     OS getOS()
     {
-    #ifdef _WIN32
-        //#include <Windows.h>
+#ifdef _WIN32
+        #include <Windows.h>
         return OS::WINDWOS;
-    #elif __APPLE__
+#elif __APPLE__
         //#include "TargetConditionals.h"
-    #elif TARGET_OS_MAC
-            //INCLUDES
+#elif TARGET_OS_MAC
+        //INCLUDES
            return OS::MACOS
-    #elif __linux__
-            return OS::LINUX;
-    #elif __unix__
-            return OS::UNIX;
+#elif __linux__
+        return OS::LINUX;
+#elif __unix__
+        return OS::UNIX;
     #else
     #   error "Unknown compiler"
-    #endif
+#endif
     }
+
+
 }
 
 

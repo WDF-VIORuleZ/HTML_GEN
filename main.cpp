@@ -1,14 +1,13 @@
 //Class Includes
 #include "Application.hpp"
-#include "external.hpp"
+//#include "external.hpp"
+#include <iostream>
 
 //Lib-Includes
 #include <memory>
 #include <vector>
 #include <chrono>
 #include <algorithm>
-
-ext::OS os = ext::getOS();
 
 int main(int argc, char* argv[])
 {
@@ -17,43 +16,46 @@ int main(int argc, char* argv[])
     const std::string filePath = argv[0];
 
     //Testzone
-    app->menu(filePath);
+    std::cout << argc << std::endl;
 
     //Argument Parsing
     std::vector<std::string> argv_s ;
-
-    for(unsigned int i =  0; i < argc - 1; i++)
+    if(argc == 1)
     {
-        std::string tmp(argv[i]);
-        argv_s.push_back(tmp);
-        std::cout << argv_s.at(i) << std::endl;
+        std::cout << "MARK" << std::endl;
+        argv_s.push_back(std::string(argv[0]));
+        std::cout << argv_s.at(1) << std::endl;
     }
-
-    //Printing Vector
-    std::cout << "Starting Output" << std::endl;
-    for(unsigned int i = 0; i < argv_s.size(); i++)
+    else
     {
-        std::cout << &argv_s.at(i) << std::endl;
+        //std::cout << "In else" << std::endl;
+        for(int i = 0; i < argc; i++)
+        {
+            std::string tmp(argv[i]);
+            argv_s.push_back(tmp);
+            std::cout << i << argv_s.at(i) << std::endl;
+        }
     }
 
     //Argument Processing
-    if(argv_s.at(0) == "-h" || argv_s.at(0) == "--help")
+    if(argv_s.at(1) == "-h" || argv_s.at(1) == "--help" || argc == 1)
     {
         app->usage();
     }
-    else if(argv_s.at(0) == "-m" || argv_s.at(0) == "--menu")
+    else if(argv_s.at(1) == "-m" || argv_s.at(1) == "--menu")
     {
         app->menu(filePath);
     }
-    else if(argv_s.at(0) == "-t" || argv_s.at(0) == "--type")
+    else if(argv_s.at(1) == "-t" || argv_s.at(1) == "--type")
     {
         if(argc > 2)
         {
             //Checks for Integer(LENGTH)
-            if(argv_s.at(1).length() == 1)
+            if(argv_s.at(2).length() == 1)
             {
                 //String ->
                 int tmp = std::atoi(argv_s.at(1).c_str());
+                std::cout << tmp << std::endl;
 
                 switch(tmp)
                 {
@@ -76,7 +78,7 @@ int main(int argc, char* argv[])
             }
             else
             {
-                std::cerr << "Second Parameter is not an Number" << std::endl;
+                std::cerr << "Second Parameter is not a Number" << std::endl;
                 return EXIT_FAILURE;
             }
         }
