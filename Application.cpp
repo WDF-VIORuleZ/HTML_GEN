@@ -102,7 +102,7 @@ void Application::usage()
          "-t [INT] | --type\t\t\t Benutze verscheidene Vorseinstellungen" << std::endl <<
          "\t[1]: Komplettes Geruest| minimale Vorschlaege| leichter Einstieg " << std::endl <<
          "\t[2]: Mittleres Geruest | keine Vorschlaege   | mittlerer Einstieg" << std::endl <<
-         "\t[3]: Minimalgeruest    | keine Vorschlaege 	 | schwerer Einstieg " << std::endl;
+         "\t[3]: Minimalgeruest    | keine Vorschlaege   | schwerer Einstieg " << std::endl;
 }
 
 void Application::menu(std::string nPath)

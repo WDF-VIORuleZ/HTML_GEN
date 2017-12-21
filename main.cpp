@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     {
         std::string tmp(argv[i]);
         argv_s.push_back(tmp);
-        std::cout << i << argv_s.at(i) << std::endl;
+        //std::cout << i << argv_s.at(i) << std::endl;
     }
 
     //Argument Processing
