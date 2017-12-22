@@ -1,5 +1,5 @@
 //
-// Created by mxhdrm on 14.12.17.
+// Created by Leon Groß on 14.12.17.
 //
 
 #ifndef CONSOLE_EXTERNAL_HPP
