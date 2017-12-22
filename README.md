@@ -13,3 +13,5 @@ Simple HTML File Generator for _**Command Prompt**_
 ## Supported OS's
 * Microsoft Windows (Coming Soon)
 * Linux 
+
+@leon_gross@protonmail.ch
