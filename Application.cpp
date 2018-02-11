@@ -12,7 +12,7 @@
 #include <fstream>
 #include <chrono>
 #include <algorithm>
-#include <curses.h> //Only Linux
+#include <curses.h> //sudo apt-get install libncurses5-dev
 #include <unistd.h> //Only Linux
 
 
